@@ -1,0 +1,33 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "rool-tooapps",
+          "appId": "1:894766207106:android:8f1bbeafabd41eaf5e249b",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "rool-tooapps",
+          "configurations": {
+            "android": "1:894766207106:android:8f1bbeafabd41eaf5e249b",
+            "ios": "1:894766207106:ios:61b4abba33d7bab45e249b",
+            "macos": "1:894766207106:ios:61b4abba33d7bab45e249b",
+            "web": "1:894766207106:web:1dd51cf33bc8227b5e249b",
+            "windows": "1:894766207106:web:ba84b0fd6c2fed1a5e249b"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

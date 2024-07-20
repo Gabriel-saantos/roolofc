@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redefinir Senha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="//www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="//www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #000; /* Cor da fonte preta */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #000; /* Cor do título preto */
+        }
+
+        input[type=password] {
+            width: calc(100% - 20px);
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+        }
+
+        button[type=submit] {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background-color: #000; /* Cor de fundo preta */
+            color: #fff; /* Cor do texto branco */
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyA4txqzqjVMhqjSZOppGyo-NQ2qhU6vnHM",
+                authDomain: "rool-tooapps.firebaseapp.com",
+                projectId: "rool-tooapps",
+                storageBucket: "rool-tooapps.appspot.com",
+                messagingSenderId: "894766207106",
+                appId: "1:894766207106:web:1dd51cf33bc8227b5e249b",
+                measurementId: "G-G6LJ9XD1E8"
+            };
+            // Initialize Firebase
+            var defaultProject = firebase.initializeApp(firebaseConfig);
+
+            var body = $(document.body);
+
+            const queryString = window.location.search;
+
+            const urlParams = new URLSearchParams(queryString);
+
+            const code = urlParams.get('oobCode');
+
+            if (code === null || code.trim().length === 0) {
+                alert("ERRO");
+                return;
+            }
+
+            body.find("#resetForm").submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+                var password = $.trim(body.find("[name=password]").val());
+                if (password.length === 0) {
+                    alert("Por favor, digite a nova senha!");
+                    return;
+                }
+                body.find("button[type=submit]").prop("disabled", true);
+                defaultProject.auth().confirmPasswordReset(code, password).then(function () {
+                    $("#resetForm").hide(); // Esconde o formulário de redefinição de senha
+                    $("#successMessage").show(); // Exibe a mensagem de sucesso
+                }).catch(function (error) {
+                    console.log(error);
+                    if (error.message) {
+                        alert(error.message);
+                    }
+                    body.find("button[type=submit]").prop("disabled", false);
+                });
+            });
+
+            body.find(".options .register").attr("href", "register.html");
+            body.find(".options .login").attr("href", "login.html");
+
+            // listening change state of user
+            defaultProject.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    window.location.href = "/user.html";
+                }
+                body.find("button[type=submit]").prop("disabled", false);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="https://firebasestorage.googleapis.com/v0/b/rool-tooapps.appspot.com/o/IMAGENS%2FR__1_-removebg-preview.png?alt=media&token=fedcf4ae-354d-4b51-a461-5c5dc0d19a6d" alt="Logo" class="logo">
+        <div class="navbar">
+            <a href="#">Rool</a>
+        </div>
+    </div>
+    <h2>Redefinir Senha</h2>
+    <form id="resetForm">
+        <input type="password" name="password" autocomplete="off" placeholder="Digite a nova senha">
+        <button type="submit">Redefinir Senha</button>
+    </form>
+    <div id="successMessage" style="display: none; text-align: center; color: black;">Senha alterada com sucesso!</div>
+    <div class="footer">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Ajuda</a>
+    </div>
+</div>
+
+</body>
+</html>

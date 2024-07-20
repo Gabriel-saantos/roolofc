@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "894766207106",
+    "project_id": "rool-tooapps",
+    "storage_bucket": "rool-tooapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894766207106:android:8f1bbeafabd41eaf5e249b",
+        "android_client_info": {
+          "package_name": "com.tooapps.rool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894766207106-dfq962djskh5qr5q1jt5gql2rr035v20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tooapps.rool",
+            "certificate_hash": "6162572bc39b6446e9c7765062f5d548bb05f011"
+          }
+        },
+        {
+          "client_id": "894766207106-j5jtm3f81h622p3k8fngn2h1t4qa3th2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBazPLd2bEJHDXZookVKlns8gyGiIRWG7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894766207106-9fjb6pb9lm3sa6pbnd43el0mj8g2nrrk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "894766207106-bnk0h7ths9hd7egvr04rk1j3c149hhna.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tooapps.rool"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
